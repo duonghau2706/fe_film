@@ -1,0 +1,199 @@
+#root {
+  padding: 0;
+}
+.ant-menu-light {
+  background: transparent;
+  color: white;
+}
+.ant-menu-light .ant-menu-submenu-title:hover {
+  color: white !important;
+  background: #1a2c44 !important;
+}
+.ant-menu-light .ant-menu-item:hover {
+  color: white !important;
+  background: #1a2c44 !important;
+}
+.ant-menu-light .ant-menu-submenu-selected > .ant-menu-submenu-title {
+  color: white;
+}
+.ant-menu-light .ant-menu-item-selected {
+  color: white;
+  background: #1a2c44;
+}
+
+.ant-form-item {
+  margin-bottom: 0px;
+}
+
+.ant-row {
+  justify-content: center;
+}
+
+.ant-tabs .ant-tabs-tab {
+  font-size: 15px;
+}
+
+.ant-tabs-card > .ant-tabs-nav .ant-tabs-tab,
+:where(.css-dev-only-do-not-override-htwhyh).ant-tabs-card
+  > div
+  > .ant-tabs-nav
+  .ant-tabs-tab {
+  background-color: rgb(235, 233, 233);
+}
+
+.ant-tabs-card > .ant-tabs-nav .ant-tabs-tab-active,
+:where(.css-dev-only-do-not-override-htwhyh).ant-tabs-card
+  > div
+  > .ant-tabs-nav
+  .ant-tabs-tab-active {
+  background-color: rgba(215, 215, 215, 1);
+}
+
+.ant-pagination .ant-pagination-total-text {
+  margin-right: auto;
+}
+
+.ant-table-wrapper .ant-table-thead > tr > th.ant-table-cell {
+  text-align: center;
+}
+
+.ant-table-wrapper .ant-table-thead > tr > th {
+  background-color: #1a2c44;
+  color: white;
+}
+
+.ant-form-horizontal .ant-form-item-control {
+  max-height: 125px;
+}
+.ant-checkbox-wrapper + .ant-checkbox-wrapper {
+  margin: 0;
+}
+
+.ant-form-item .ant-form-item-label > label.ant-form-item-required::after {
+  content: '*';
+  color: red;
+  margin-inline-start: 4px;
+  font-size: 14px;
+  display: inline-block;
+}
+
+.ant-form-item .ant-form-item-label > label {
+  font-size: 14px;
+}
+
+.ant-table-wrapper .ant-table {
+  font-size: 14px;
+}
+
+.ant-form-item .ant-form-item-label {
+  text-align: start;
+}
+
+.ant-form-item
+  .ant-form-item-label
+  > label.ant-form-item-required:not(
+    .ant-form-item-required-mark-optional
+  )::before {
+  content: '';
+}
+
+.ant-form-item .ant-form-item-label > label::after {
+  content: '';
+}
+
+.trigger {
+  padding: 0 24px;
+  font-size: 18px;
+  line-height: 64px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.required label:after {
+  content: '*';
+  color: red;
+}
+
+.btnDelete {
+  cursor: pointer;
+}
+.ant-spin-nested-loading > div > .ant-spin {
+  height: 100vh !important;
+  max-height: none;
+}
+.ant-table-wrapper
+  .ant-table-thead
+  > tr
+  > th:not(:last-child):not(.ant-table-selection-column):not(
+    .ant-table-row-expand-icon-cell
+  ):not([colspan])::before,
+.ant-table-wrapper
+  .ant-table-thead
+  .ant-table-selection-column.ant-table-row-expand-icon-cell:not(
+    [colspan]
+  )::before {
+  height: 100%;
+}
+
+.ant-table-thead
+  > tr
+  > th:not(.ant-table-selection-column):not(
+    .ant-table-row-expand-icon-cell
+  ):not([colspan])::before,
+.ant-table-wrapper
+  .ant-table-thead
+  > tr
+  > td:not(.ant-table-selection-column):not(
+    .ant-table-row-expand-icon-cell
+  ):not([colspan])::before {
+  position: absolute;
+  top: 50%;
+  inset-inline-end: 0;
+  width: 1px;
+  height: 100%;
+  background-color: #f0f0f0;
+  transform: translateY(-50%);
+  transition: background-color 0.2s;
+  content: '';
+}
+
+.ant-table-wrapper .ant-table-thead > tr:not(:last-child) > th[colspan] {
+  border-bottom: 1px solid white;
+  border-right: 1px solid white;
+}
+
+.ant-spin-nested-loading > div > .ant-spin {
+  height: 100% !important;
+}
+
+.text-editor .ql-editor {
+  height: 330px;
+}
+.text-editor .ql-snow .ql-picker.ql-font {
+  width: 150px;
+}
+
+.text-editor .ql-formats.ql-font .ql-picker-label[data-value='Arial']::before,
+.text-editor .ql-formats.ql-font .ql-picker-item[data-value='Arial']::before {
+  font-family: 'Arial', sans-serif;
+  content: 'Arial';
+}
+
+.text-editor .ql-formats.ql-font .ql-picker-label[data-value='times']::before,
+.text-editor .ql-formats.ql-font .ql-picker-item[data-value='times']::before {
+  font-family: 'Times New Roman', Times, serif;
+  content: 'Times New Roman';
+}
+
+/* Set content font-families */
+.text-editor .ql-font-times {
+  font-family: 'Times New Roman', Times, serif;
+}
+/* Set content font-families */
+.text-editor .ql-font-Arial {
+  font-family: 'Arial';
+}
+
+.ant-form-horizontal .ant-form-item-control {
+  max-height: fit-content;
+}

@@ -1,0 +1,180 @@
+.wrapper {
+  :global {
+    .ant-btn-primary {
+      background-color: var(--orange-priamry);
+    }
+    .ant-form-item .ant-form-item-label > label {
+      color: var(--black-blur);
+    }
+    .ant-table-thead > tr > th {
+      background-color: var(--blue-primary); /* sử dụng mã màu HEX */
+      color: #ffff;
+    }
+    .ant-table table {
+      font-size: 14px;
+    }
+    .ant-table-cell > .ant-input {
+      text-align: right;
+    }
+    .ant-checkbox-wrapper + .ant-checkbox-wrapper {
+      margin-inline-start: 0px;
+    }
+    .ant-pagination-options {
+      display: none;
+    }
+  }
+}
+//
+.hiddenColon {
+  :global {
+    .ant-form-item .ant-form-item-label > label::after {
+      content: '';
+    }
+  }
+}
+
+.asterisk {
+  :global {
+    .ant-form-item
+      .ant-form-item-label
+      > label.ant-form-item-required:not(
+        .ant-form-item-required-mark-optional
+      )::before {
+      content: '';
+    }
+  }
+}
+
+.disableRrowTableCheckbox {
+  :global {
+    .ant-checkbox-wrapper .ant-checkbox-wrapper-disabled {
+      display: none;
+    }
+    .ant-checkbox .ant-checkbox-disabled .ant-checkbox-inner {
+      display: none;
+    }
+  }
+}
+.labelCenter {
+  :global {
+    .ant-form-item .ant-form-item-label {
+      text-align: center;
+    }
+  }
+}
+.hiddenSecondlabelSelected {
+  :global {
+    .ant-select-selection-item .secondLabel {
+      display: none;
+    }
+    .ant-row {
+      justify-content: start;
+    }
+  }
+}
+
+.checkboxCustom {
+  :global {
+    .ant-checkbox-group-item {
+      place-content: flex-end;
+      flex-flow: row-reverse;
+    }
+    .ant-checkbox-wrapper span + span {
+      width: 370px;
+    }
+  }
+}
+
+.noneColonFormItem {
+  :global {
+    .ant-form-item .ant-form-item-label > label::after {
+      content: '';
+    }
+  }
+}
+
+.customHoverBtn {
+  :global {
+    .ant-btn-default:not(:disabled):hover {
+      color: rgba(22, 155, 213, 1);
+      background-color: #ffff;
+    }
+  }
+}
+
+.removeBgBtn {
+  :global {
+    .ant-btn-default {
+      background-color: transparent;
+      box-shadow: none;
+    }
+  }
+}
+
+.removeHoverBtnAntd {
+  :global {
+    .ant-btn-default:not(:disabled):hover {
+      color: white;
+      border: 1px solid transparent;
+    }
+  }
+}
+
+.paddingModal {
+  :global {
+    .ant-modal-content {
+      padding: 0px;
+    }
+  }
+}
+.removeIconSearch {
+  :global {
+    .ant-input-group-addon {
+      display: none;
+    }
+  }
+}
+
+.removePdModalAntd {
+  :global {
+    .ant-modal-content {
+      padding: 0px;
+    }
+  }
+}
+
+.textNotDisabled {
+  :global {
+    .ant-select-disabled .ant-select-selector .ant-select-selection-item {
+      color: black;
+    }
+  }
+}
+
+.textAreaNotDisabled {
+  :global {
+    .ant-input-affix-wrapper-disabled .ant-input[disabled] {
+      color: black;
+    }
+  }
+}
+
+.removeRowSelected {
+  :global {
+    .ant-table-row .ant-table-row-level-0 .ant-table-row-selected {
+      background-color: transparent !important;
+    }
+  }
+}
+
+.customLabelRequiredAntd {
+  :global {
+    .ant-form-item
+      .ant-form-item-label
+      > label.ant-form-item-required:not(
+        .ant-form-item-required-mark-optional
+      )::before {
+      margin-inline-end: 0;
+    }
+  }
+}
