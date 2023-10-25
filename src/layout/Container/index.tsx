@@ -1,115 +1,91 @@
-import LogoAdmin from '@/assets/image/logoAdmin.svg'
-import Logout from '@/assets/image/logout.svg'
-import Logo from '@/assets/image/logo.png'
-import LogoH from '@/assets/image/logo_h.png'
+// import LogoAdmin from '@/assets/image/logoAdmin.svg'
+import logoNetflix from '@/assets/image/logoNetFlix.png'
+// import Logout from '@/assets/image/logout.svg'
 import style from '@/common.module.scss'
-import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
-import { Layout } from 'antd'
-import { useEffect, useState } from 'react'
-import { Outlet, useNavigate } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
+// import { SearchOutlined } from '@ant-design/icons'
+import {
+  ArrowDropDown,
+  Notifications,
+  Search,
+  // CloseSharp,
+} from '@material-ui/icons'
 
-import SideBar from './SideBar'
-import useToken from '@/hook/token'
-import { URL } from '@/utils/constants'
-
-const { Sider } = Layout
+// import useToken from '@/hook/token'
+import { Button } from 'antd'
+// import { useState } from 'react'
 
 const ContainerBody = () => {
-  const { verifyToken } = useToken()
-  const { decode } = verifyToken()
+  // const { verifyToken } = useToken()
+  // const { decode } = verifyToken()
 
-  const navigate = useNavigate()
+  // const handleLogout = () => {
+  //   localStorage.removeItem('dataSearch')
+  //   localStorage.removeItem('token')
+  //   // navigate(URL.LOGIN)
+  //   location.replace(
+  //     `${import.meta.env.VITE_BASE_API_URl}/api/v1/ms-teams/auth/signout`
+  //   )
+  // }
 
-  const [collapsed, setCollapsed] = useState(window.innerWidth <= 1024)
+  //NEW
+  //SCROLL__BAR--SKIP
+  // const [isScrolled, setIsScrolled] = useState(true)
 
-  useEffect(() => {
-    const handleResize = () => {
-      setCollapsed(window.innerWidth <= 1024)
-    }
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
-
-  const handleLogout = () => {
-    localStorage.removeItem('dataSearch')
-    localStorage.removeItem('token')
-    // navigate(URL.LOGIN)
-    location.replace(
-      `${import.meta.env.VITE_BASE_API_URl}/api/v1/ms-teams/auth/signout`
-    )
-  }
+  // window.onscroll = () => {
+  //   setIsScrolled(window.pageYOffset === 0 ? false : true)
+  //   return () => (window.onscroll = null)
+  // }
 
   return (
     <div className={style.wrapper}>
-      <Sider
-        trigger={null}
-        collapsible
-        collapsed={collapsed}
-        className="h-screen bg-[#001233] fixed top-0 left-0 transition-all duration-500"
-        width={250}
-      >
-        <div className="relative h-screen cursor-pointer">
-          {!collapsed ? (
-            <div
-              className="px-4 py-[4px] bg-white h-[60px] flex justify-center items-center"
-              onClick={() => navigate(URL.HOME)}
-            >
-              <img src={Logo} width={150} height={50} />
-            </div>
-          ) : (
-            <div
-              className="px-4 py-[4px] bg-white h-[60px] flex justify-center items-center"
-              onClick={() => navigate(URL.HOME)}
-            >
-              <img src={LogoH} width={35} height={45} />
-            </div>
-          )}
-          <div className="mt-2">
-            <SideBar />
-          </div>
-        </div>
-      </Sider>
       <div
-        className={`${
-          collapsed ? 'ml-[80px]' : 'ml-[250px]'
-        } h-screen transition-all duration-500 top-0 inset-x-0 fixed z-30 transition-position lg:w-auto`}
+        className="h-[64px] w-full flex justify-between items-center pr-4 fixed pl-10 z-[9999]"
+        style={{
+          background:
+            'linear-gradient(to top, transparent 0%, rgb(0, 0, 0, 0.8) 100%)',
+        }}
       >
-        <div>
-          <div className="h-[60px] flex justify-between items-center pr-4 ">
-            {collapsed ? (
-              <MenuUnfoldOutlined
-                style={{ fontSize: '30px', color: '' }}
-                onClick={() => setCollapsed(!collapsed)}
-              />
-            ) : (
-              <MenuFoldOutlined
-                style={{ fontSize: '30px', color: '' }}
-                onClick={() => setCollapsed(!collapsed)}
-              />
-            )}
-
-            <div className="flex gap-2 cursor-pointer justify-end">
-              <img src={LogoAdmin} width={18} height={23}></img>
-              <label className="cursor-pointer mt-[3px] font-bold">
-                {decode?.name}
-              </label>
-
-              <div
-                className="flex gap-2 cursor-pointer ml-4 justify-end items-center"
-                onClick={handleLogout}
-              >
-                <label className="cursor-pointer text-red-primary font-semibold underline -translate-y-[1px] mt-[3px]">
-                  Đăng xuất
-                </label>
-                <img src={Logout} width={20} height={18}></img>
-              </div>
-            </div>
+        <div className="flex gap-2 cursor-pointer justify-end">
+          <img src={logoNetflix} height={25} className="my-auto" />
+          <div className="flex">
+            <Button className="bg-transparent border-none text-white font-semibold px-[10px]">
+              Trang chủ
+            </Button>
+            <Button className="bg-transparent border-none text-white font-semibold px-[10px]">
+              Phim T.hình
+            </Button>
+            <Button className="bg-transparent border-none text-white font-semibold px-[10px]">
+              Phim
+            </Button>
+            <Button className="bg-transparent border-none text-white font-semibold px-[10px]">
+              Mới & Phổ biến
+            </Button>
+            <Button className="bg-transparent border-none text-white font-semibold px-[10px]">
+              Danh sách của tôi
+            </Button>
+            <Button className="bg-transparent border-none text-white font-semibold px-[10px]">
+              Duyệt theo ngôn ngữ
+            </Button>
           </div>
-          <div className="bg-[#001233] h-1"></div>
         </div>
-        <div className="bg-[#F5F5F5] min-h-[calc(100vh-64px)] overflow-auto h-[calc(100vh-64px)]">
-          <Outlet />
+
+        <div className="flex pr-10 gap-4 items-center">
+          <Search />
+          <Notifications />
+          <div className="flex items-center">
+            <img
+              src="https://images.pexels.com/photos/6899260/pexels-photo-6899260.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+              alt=""
+              className="w-[30px] h-[30px] rounded-[5px] object-cover cursor-pointer"
+            />
+            <ArrowDropDown />
+          </div>
         </div>
+      </div>
+
+      <div className="bg-[#F5F5F5] min-h-[calc(100vh)] overflow-auto h-[calc(100vh)]">
+        <Outlet />
       </div>
     </div>
   )

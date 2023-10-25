@@ -5,6 +5,7 @@ import 'antd/dist/reset.css'
 import './index.css'
 import { Provider } from 'react-redux'
 import { combineReducers, legacy_createStore as createStore } from 'redux'
+// import { navbarScroll } from '@/stores/reducers/index'
 
 declare global {
   interface Window {

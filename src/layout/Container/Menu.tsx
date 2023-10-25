@@ -1,4 +1,5 @@
 import useToken from '@/hook/token'
+import Home from '@/pages/Home'
 import { URL } from '@/utils/constants'
 import {
   FileTextOutlined,
@@ -6,7 +7,7 @@ import {
   TeamOutlined,
   UserOutlined,
   GlobalOutlined,
-  HomeOutlined,
+  // HomeOutlined,
   InfoCircleOutlined,
 } from '@ant-design/icons'
 import type { MenuProps } from 'antd'
@@ -58,12 +59,8 @@ const SideBar = () => {
 
   const items: MenuItem[] = useMemo(() => {
     return [
-      getItem('Dashboard', URL.HOME, <HomeOutlined />),
-      getItem(
-        'Quản lý Nguồn khách hàng',
-        `URL.CUSTOMER_RESOURCE`,
-        <GlobalOutlined />
-      ),
+      getItem('Trang chủ', URL.HOME, <Home />),
+      getItem('Phim T.hình', `URL.CUSTOMER_RESOURCE`, <GlobalOutlined />),
       getItem('Quản lý khách hàng', `URL.CUSTOMER`, <TeamOutlined />),
       ...(decode?.role === role.admin
         ? [getItem('Quản lý người dùng', `URL.USER`, <UserOutlined />)]

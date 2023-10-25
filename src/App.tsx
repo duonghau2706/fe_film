@@ -11,6 +11,7 @@ import { URL } from './utils/constants'
 import weekday from 'dayjs/plugin/weekday'
 import localeData from 'dayjs/plugin/localeData'
 import dayjs from 'dayjs'
+import { ConfigProvider } from 'antd'
 
 dayjs.extend(weekday)
 dayjs.extend(localeData)
@@ -26,21 +27,32 @@ export const queryClient = new QueryClient({
 function App() {
   return (
     <div>
-      <ToastContainer />
-      <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <Routes>
-            <Route>
-              <Route path={URL.LOGIN} element={<Login />} />
-              <Route path={URL.FORGOT_PASSWORD} element={<ForgotPassword />} />
-              <Route path={URL.lOGIN_MS_TEAMS} element={<LoginMsTeams />} />
-              <Route element={<Authentication />}>
-                <Route path="/*" element={<Root />} />
+      <ConfigProvider
+        theme={{
+          token: {
+            colorPrimary: 'white',
+          },
+        }}
+      >
+        <ToastContainer />
+        <QueryClientProvider client={queryClient}>
+          <BrowserRouter>
+            <Routes>
+              <Route>
+                <Route path={URL.LOGIN} element={<Login />} />
+                <Route
+                  path={URL.FORGOT_PASSWORD}
+                  element={<ForgotPassword />}
+                />
+                <Route path={URL.lOGIN_MS_TEAMS} element={<LoginMsTeams />} />
+                <Route element={<Authentication />}>
+                  <Route path="/*" element={<Root />} />
+                </Route>
               </Route>
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </QueryClientProvider>
+            </Routes>
+          </BrowserRouter>
+        </QueryClientProvider>
+      </ConfigProvider>
     </div>
   )
 }

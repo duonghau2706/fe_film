@@ -1,12 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx, svg}'],
   theme: {
     extend: {
       backgroundImage: {
         'admin-login': "url('@/assets/image/screenLogin.png')",
         'login-logo': "url('@/assets/image/banner.png')",
         'download-excel': "url('@/assets/image/upload.png')",
+        'bg-home': "url('@/assets/image/home.jpg')",
+      },
+      backgroundColor: {
+        red: { primary: '#e50914', secondary: '#c11119' },
       },
       colors: {
         primary: '#d7d7d7',
@@ -50,6 +54,13 @@ export default {
         brown: {
           primary: '#7f7f7f',
         },
+        black: {
+          primary: '#141414',
+          main: '#0b0b0b',
+        },
+      },
+      fontFamily: {
+        home: 'Calistoga',
       },
     },
   },

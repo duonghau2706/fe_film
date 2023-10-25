@@ -197,3 +197,49 @@
 .ant-form-horizontal .ant-form-item-control {
   max-height: fit-content;
 }
+
+/* slider-swipper */
+.swiper-button-disabled {
+  display: none !important;
+}
+
+.swiper-button-next {
+  width: 50px !important;
+  height: 168px !important;
+  color: white !important;
+  top: 0 !important;
+  margin-top: 0 !important;
+  right: 0 !important;
+}
+
+.swiper-button-prev {
+  width: 50px !important;
+  height: 168px !important;
+  color: white !important;
+  top: 0 !important;
+  margin-top: 0 !important;
+  left: 0 !important;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  content: '';
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: hsla(0, 0%, 6%, 0.7) !important;
+  width: 50px !important;
+}
+
+.swiper-button-next:hover::after,
+.swiper-button-prev:hover::after {
+  display: flex;
+}
+
+.navbar__scroll {
+  background-color: #0b0b0b !important;
+}
