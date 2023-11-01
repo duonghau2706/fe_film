@@ -4,38 +4,32 @@ import { Button, Checkbox, Col, Form, Input, message } from 'antd'
 import { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-import useInput from '@/hook/use-input'
+// import useInput from '@/hook/use-input'
 import logoNetFlix from '@/assets/image/logoNetFlix.png'
 import bgHome from '@/assets/image/home.jpg'
+import { useMutation } from 'react-query'
+
+import { loginApi } from '@/adapter'
 
 /* eslint-disable no-template-curly-in-string */
-const validateMessages = {
-  required: '${label} is required!',
-  types: {
-    email: '${label} is not a valid email!',
-  },
-}
-const windowProps = `toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, width=800, height=800`
+// const validateMessages = {
+//   required: '${label} is required!',
+//   types: {
+//     email: '${label} is not a valid email!',
+//   },
+// }
+// const windowProps = `toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, width=800, height=800`
 
 const Login = () => {
   const navigate = useNavigate()
   const [form] = Form.useForm()
-  const onFinish = (values: any) => {
-    const user = {
-      ...values,
-    }
-    alert(user)
-    // navigate(URL.CUSTOMER)
-  }
-
-  const handleLoginMsTeams = () => {
-    const popup = window.open(
-      `${import.meta.env.VITE_WEB_URL}${URL.lOGIN_MS_TEAMS}?loginType=login`,
-      'Pop up window',
-      windowProps
-    )
-    popup?.postMessage('message', import.meta.env.VITE_WEB_URL)
-  }
+  // const onFinish = (values: any) => {
+  //   const user = {
+  //     ...values,
+  //   }
+  //   alert(user)
+  //   // navigate(URL.CUSTOMER)
+  // }
 
   useEffect(() => {
     const childResponse = (event: any) => {
@@ -55,40 +49,73 @@ const Login = () => {
   }, [])
 
   //logic
-  const {
-    value: enteredAccount,
-    inputIsNotValid: accountIsNotValid,
-    inputChangeHandler: accountChangeHandler,
-    inputBlurHandler: accountBlurHandler,
-    inputReset: accountReset,
-  } = useInput(
-    (value: any) => value.trim() === '' || !String(value).includes('@')
-  )
+  // const {
+  //   value: enteredAccount,
+  //   inputIsNotValid: accountIsNotValid,
+  //   inputChangeHandler: accountChangeHandler,
+  //   inputBlurHandler: accountBlurHandler,
+  //   inputReset: accountReset,
+  // } = useInput(
+  //   (value: any) => value.trim() === '' || !String(value).includes('@')
+  // )
 
-  const {
-    value: enteredPass,
-    inputIsNotValid: passIsNotValid,
-    inputChangeHandler: passChangeHandler,
-    inputBlurHandler: passBlurHandler,
-    inputReset: passReset,
-  } = useInput((value: any) => value.length < 4 || value.length > 60)
+  // const {
+  //   value: enteredPass,
+  //   inputIsNotValid: passIsNotValid,
+  //   inputChangeHandler: passChangeHandler,
+  //   inputBlurHandler: passBlurHandler,
+  //   inputReset: passReset,
+  // } = useInput((value: any) => value.length < 4 || value.length > 60)
 
-  const formIsValid = !accountIsNotValid && !passIsNotValid
+  // const formIsValid = !accountIsNotValid && !passIsNotValid
 
-  const formSubmittedHandler = (event: any) => {
-    event.preventDefault()
-    if (accountIsNotValid || passIsNotValid) {
-      return
-    }
+  // const formSubmittedHandler = (event: any) => {
+  //   event.preventDefault()
+  //   if (accountIsNotValid || passIsNotValid) {
+  //     return
+  //   }
 
-    accountReset()
-    passReset()
-  }
+  //   accountReset()
+  //   passReset()
+  // }
 
   //dung xoa
+  // const [email, setEmail] = useState()
+  // const [password, setPassword] = useState()
+
   const loginHandler = () => {
+    const email = form.getFieldValue('email')
+    const password = form.getFieldValue('password')
+
+    // setEmail(email)
+    // setPassword(password)
+
+    mutationLogin.mutate({ email, password })
+
     navigate(URL.HOME)
   }
+
+  const mutationLogin = useMutation({
+    mutationFn: (params: any) => loginApi.postLogin(params),
+    // onSuccess: (res) => {
+    //   console.log('res', res)
+    // },
+    // onError: (err) => {
+    //   console.log('err', err)
+    // },
+  })
+
+  // const { data } = useQuery({
+  //   queryKey: [QUERY_KEY.LOGIN, enteredAccount, enteredPass],
+  //   queryFn: () => {
+  //     loginApi
+  //       .postLogin({ email: enteredAccount, passsword: enteredPass })
+  //       .then((res) => {
+  //         console.log('res', res)
+  //         return res
+  //       })
+  //   },
+  // })
 
   return (
     <div
@@ -112,16 +139,22 @@ const Login = () => {
           className="w-full px-[50px] bg-[#000000bf] rounded-[7px] pt-[30px] pb-[30px]"
         >
           <h1 className="text-[2rem]">Đăng nhập</h1>
-          <div>
-            <Input
-              className="mb-3 h-10"
-              placeholder="Email hoặc số điện thoại"
-            />
-            <Input className="mb-7 h-10" placeholder="Mật khẩu" />
-          </div>
+          <Form form={form} method="POST" action="/login/auth/sigin">
+            <Form.Item name="email">
+              <Input
+                className="mb-3 h-10"
+                placeholder="Email hoặc số điện thoại"
+              />
+            </Form.Item>
+
+            <Form.Item name="password">
+              <Input className="mb-7 h-10" placeholder="Mật khẩu" />
+            </Form.Item>
+          </Form>
           <div>
             <Button
               className="w-full bg-red-primary text-white text-[16px] font-semibold border-none hover:bg-red-secondary py-5 items-center flex justify-center"
+              htmlType="submit"
               onClick={loginHandler}
             >
               Đăng nhập

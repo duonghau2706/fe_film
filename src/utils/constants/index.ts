@@ -8,11 +8,13 @@ const URL = {
 }
 
 const QUERY_KEY = {
+  LOGIN: 'login',
   GET_CONTENT_BY_ID: 'get_content_by_id',
   GET_CASE_STATUS_USER: 'get_case_status_user',
 }
 
 const endpoint = {
+  login: 'api/v1/login/auth',
   get_customer: '/api/v1/customer/get-all',
   create_customer: '/api/v1/customer/create',
   update_customer: '/api/v1/customer/update',

@@ -1,4 +1,5 @@
 import ContentApi from './content'
 import userApi from './user'
 import getTotalCase from './getTotalpercent'
-export { userApi, ContentApi, getTotalCase }
+import loginApi from './login'
+export { userApi, ContentApi, getTotalCase, loginApi }
