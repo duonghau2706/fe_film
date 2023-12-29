@@ -1,4 +1,4 @@
-import logoNetflix from '@/assets/image/logoNetFlix.png'
+import logoSANSAN from '@/assets/image/logoSANSAN.png'
 import { URL } from '@/utils/constants'
 import { Button, ConfigProvider } from 'antd'
 import { useNavigate } from 'react-router-dom'
@@ -13,10 +13,10 @@ const ContainerRegister = () => {
     <div>
       <header className="flex items-center justify-between px-[20px] w-[80%] mx-auto">
         <div className="px-[20px] py-[50px] flex items-center justify-between">
-          <img className="h-[40px]" src={logoNetflix} alt="logo netflix" />
+          <img className="h-[40px]" src={logoSANSAN} alt="logo netflix" />
         </div>
         <div className="flex">
-          <div>Tieng viet</div>
+          {/* <div>Tieng viet</div> */}
           <ConfigProvider
             theme={{
               token: {

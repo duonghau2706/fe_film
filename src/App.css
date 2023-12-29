@@ -33,6 +33,11 @@
   font-size: 15px;
 }
 
+:where(.css-dev-only-do-not-override-lhcdzw).ant-input-affix-wrapper-disabled,
+:where(.css-dev-only-do-not-override-lhcdzw).ant-input-affix-wrapper[disabled] {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+
 .ant-tabs-card > .ant-tabs-nav .ant-tabs-tab,
 :where(.css-dev-only-do-not-override-htwhyh).ant-tabs-card
   > div
@@ -198,48 +203,19 @@
   max-height: fit-content;
 }
 
-/* slider-swipper */
-.swiper-button-disabled {
-  display: none !important;
-}
-
-.swiper-button-next {
-  width: 50px !important;
-  height: 168px !important;
-  color: white !important;
-  top: 0 !important;
-  margin-top: 0 !important;
-  right: 0 !important;
-}
-
-.swiper-button-prev {
-  width: 50px !important;
-  height: 168px !important;
-  color: white !important;
-  top: 0 !important;
-  margin-top: 0 !important;
-  left: 0 !important;
-}
-
-.swiper-button-next::after,
-.swiper-button-prev::after {
-  content: '';
-  display: none;
-  align-items: center;
-  justify-content: center;
-}
-
-.swiper-button-next:hover,
-.swiper-button-prev:hover {
-  background-color: hsla(0, 0%, 6%, 0.7) !important;
-  width: 50px !important;
-}
-
-.swiper-button-next:hover::after,
-.swiper-button-prev:hover::after {
-  display: flex;
-}
-
 .navbar__scroll {
   background-color: #0b0b0b !important;
+}
+
+/* .anticon {
+  color: white;
+} */
+
+input:focus {
+  outline: none;
+}
+
+/* Đổi màu sắc của Spin */
+.ant-spin-dot i {
+  background-color: red !important; /* Màu sắc bạn muốn đặt */
 }

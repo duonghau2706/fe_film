@@ -16,6 +16,9 @@
     .ant-table-cell > .ant-input {
       text-align: right;
     }
+    .ant-table-cell {
+      border: 1px solid #e9e8e8;
+    }
     .ant-checkbox-wrapper + .ant-checkbox-wrapper {
       margin-inline-start: 0px;
     }

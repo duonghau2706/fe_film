@@ -1,108 +1,71 @@
 /* eslint-disable no-unused-vars */
 import { URL } from '@/utils/constants'
-import { Button, Checkbox, Col, Form, Input, message } from 'antd'
-import { useEffect } from 'react'
+import { Button, Checkbox, Col, ConfigProvider, Form, Input } from 'antd'
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 // import useInput from '@/hook/use-input'
-import logoNetFlix from '@/assets/image/logoNetFlix.png'
 import bgHome from '@/assets/image/home.jpg'
+import logoSANSAN from '@/assets/image/logoSANSAN.png'
+import type { CheckboxChangeEvent } from 'antd/es/checkbox'
 import { useMutation } from 'react-query'
 
-import { loginApi } from '@/adapter'
+import { loginApi, userApi } from '@/adapter'
+import { toast } from 'react-toastify'
 
 /* eslint-disable no-template-curly-in-string */
-// const validateMessages = {
-//   required: '${label} is required!',
-//   types: {
-//     email: '${label} is not a valid email!',
-//   },
-// }
+const validateMessages = {
+  required: '${label} is required!',
+  types: {
+    email: '${label} is not a valid email!',
+  },
+}
 // const windowProps = `toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, width=800, height=800`
 
 const Login = () => {
   const navigate = useNavigate()
   const [form] = Form.useForm()
-  // const onFinish = (values: any) => {
-  //   const user = {
-  //     ...values,
-  //   }
-  //   alert(user)
-  //   // navigate(URL.CUSTOMER)
-  // }
+  const [showMessage, setShowMessage] = useState('')
 
-  useEffect(() => {
-    const childResponse = (event: any) => {
-      if (event?.data?.token) {
-        localStorage.setItem('token', event?.data?.token)
-        navigate('/')
-        return
-      }
+  //update status is_member
+  const mutationUpdateStatus = useMutation({
+    mutationFn: (params: any) => userApi.updateStatusMember(params),
+    onSuccess: () => {
+      // toast.success('Vui ')
 
-      if (event?.data?.token && !event?.data?.message) {
-        message.error('Login failed')
-        return
-      }
-    }
-    window.addEventListener('message', childResponse)
-    return () => window.removeEventListener('message', childResponse)
-  }, [])
-
-  //logic
-  // const {
-  //   value: enteredAccount,
-  //   inputIsNotValid: accountIsNotValid,
-  //   inputChangeHandler: accountChangeHandler,
-  //   inputBlurHandler: accountBlurHandler,
-  //   inputReset: accountReset,
-  // } = useInput(
-  //   (value: any) => value.trim() === '' || !String(value).includes('@')
-  // )
-
-  // const {
-  //   value: enteredPass,
-  //   inputIsNotValid: passIsNotValid,
-  //   inputChangeHandler: passChangeHandler,
-  //   inputBlurHandler: passBlurHandler,
-  //   inputReset: passReset,
-  // } = useInput((value: any) => value.length < 4 || value.length > 60)
-
-  // const formIsValid = !accountIsNotValid && !passIsNotValid
-
-  // const formSubmittedHandler = (event: any) => {
-  //   event.preventDefault()
-  //   if (accountIsNotValid || passIsNotValid) {
-  //     return
-  //   }
-
-  //   accountReset()
-  //   passReset()
-  // }
-
-  //dung xoa
-  // const [email, setEmail] = useState()
-  // const [password, setPassword] = useState()
+      mutationLogin.mutate({
+        email: form.getFieldValue('email'),
+        password: form.getFieldValue('password'),
+      })
+    },
+  })
 
   const loginHandler = () => {
     const email = form.getFieldValue('email')
     const password = form.getFieldValue('password')
 
-    // setEmail(email)
-    // setPassword(password)
-
-    mutationLogin.mutate({ email, password })
-
-    navigate(URL.HOME)
+    if (email && !password) {
+      setShowMessage('Mật khẩu phải chứa từ 4 đến 60 ký tự.')
+    } else if (!email && password) {
+      setShowMessage('Vui lòng nhập email hợp lệ.')
+    } else if (!email && !password) {
+      setShowMessage('Vui lòng nhập tài khoản hợp lệ.')
+    } else {
+      mutationUpdateStatus.mutate({ email })
+    }
   }
 
   const mutationLogin = useMutation({
     mutationFn: (params: any) => loginApi.postLogin(params),
-    // onSuccess: (res) => {
-    //   console.log('res', res)
-    // },
-    // onError: (err) => {
-    //   console.log('err', err)
-    // },
+    onSuccess: (res) => {
+      res.data.token
+        ? navigate(URL.HOME)
+        : setShowMessage('Tài khoản hoặc mật khẩu không đúng.')
+      localStorage.setItem('token', res?.data?.token)
+    },
+    onError: () => {
+      toast.error('Tài khoản hoặc mật khẩu không đúng.')
+    },
   })
 
   // const { data } = useQuery({
@@ -117,6 +80,10 @@ const Login = () => {
   //   },
   // })
 
+  const onChange = (e: CheckboxChangeEvent) => {
+    // console.log(`checked = ${e.target.checked}`)
+  }
+
   return (
     <div
       className="w-screen h-screen bg-auto relative"
@@ -130,7 +97,7 @@ const Login = () => {
       }}
     >
       <header className="px-[7%] py-[30px] flex items-center justify-between">
-        <img className="h-[40px]" src={logoNetFlix} alt="logo netflix" />
+        <img className="h-[40px]" src={logoSANSAN} alt="logo netflix" />
       </header>
 
       <main className="flex justify-center">
@@ -138,17 +105,27 @@ const Login = () => {
           span={7}
           className="w-full px-[50px] bg-[#000000bf] rounded-[7px] pt-[30px] pb-[30px]"
         >
-          <h1 className="text-[2rem]">Đăng nhập</h1>
-          <Form form={form} method="POST" action="/login/auth/sigin">
+          <h1
+            className={
+              showMessage.length > 0 ? 'text-[2rem] mb-0' : 'text-[2rem]'
+            }
+          >
+            Đăng nhập
+          </h1>
+          {showMessage.length > 0 && (
+            <div className="text-red-600 my-1">{showMessage}</div>
+          )}
+          <Form form={form} validateMessages={validateMessages}>
             <Form.Item name="email">
-              <Input
-                className="mb-3 h-10"
-                placeholder="Email hoặc số điện thoại"
-              />
+              <Input className="mb-3 h-10" placeholder="Email" />
             </Form.Item>
 
             <Form.Item name="password">
-              <Input className="mb-7 h-10" placeholder="Mật khẩu" />
+              <Input
+                className="mb-7 h-10"
+                type="password"
+                placeholder="Mật khẩu"
+              />
             </Form.Item>
           </Form>
           <div>
@@ -160,9 +137,20 @@ const Login = () => {
               Đăng nhập
             </Button>
             <div className="flex mt-2 justify-between">
-              <Checkbox className="flex items-center text-[#b3b3b3] text-[13px]">
-                Ghi nhớ tôi
-              </Checkbox>
+              <ConfigProvider
+                theme={{
+                  token: {
+                    colorPrimary: '#1677ff',
+                  },
+                }}
+              >
+                <Checkbox
+                  className="flex items-center text-[#b3b3b3] text-[13px]"
+                  onChange={onChange}
+                >
+                  Ghi nhớ tôi
+                </Checkbox>
+              </ConfigProvider>
               <div className="flex items-center text-[13px] text-[#b3b3b3]">
                 Bạn cần trợ giúp?
               </div>

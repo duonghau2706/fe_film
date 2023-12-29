@@ -1,7 +1,30 @@
 const URL = {
   HOME: '/home',
   LOGIN: '/login',
+  ACCOUNT: '/account',
   REGISTER: '/register',
+  SIGNUP: '/signup',
+  CHANGE_PLAN: '/change-plan',
+  PLANFORM: '/signup/planform',
+  PAYMENT: '/signup/payment',
+  CREDIT_OPTIONS: '/signup/creditoption',
+  RECHARGE: '/recharge',
+  SETUP_RECHARGE: '/signup/setup-recharge',
+  SETUP_PAYMENT: '/signup/setup-payment',
+  SERIES_MOVIE: '/series-movie',
+  SINGLE_MOVIE: 'single-movie',
+  DETAIL_MOVIE: '/detail-movie',
+  MANAGE: '/manage',
+  WATCH: '/watch',
+  USER_LIST_MOVIE: '/user-list-movie',
+  MOVIE: '/movie',
+  USER: '/user',
+  ADMIN: '/admin',
+  DASH_BOARD: '/dash-board',
+  MANAGE_USER: '/manage-user',
+  MANAGE_MOVIE: '/manage-movie',
+  MANAGE_ADMIN: '/manage-admin',
+
   FORGOT_PASSWORD: '/forgotPassword',
   RESET_PASSWORD: 'resetPassword',
   lOGIN_MS_TEAMS: '/login-ms-teams',
@@ -9,82 +32,65 @@ const URL = {
 
 const QUERY_KEY = {
   LOGIN: 'login',
+  INSERT_TRANSACTION_HISTORIES: 'insert_transaction_histories',
+  GET_TRANSACTION_HISTORIES_USER: 'get_transaction_histories',
+  GET_INFOR_MOVIE_BY_MOVIE_ID: 'get_infor_movie_by_movie_id',
+  GET_LIST_INFOR_MOVIE_BY_LIST_MOVIE_ID:
+    'get_list_infor_movie_by_list_movie_id',
+  GET_PROFILE_USER: 'get_profile_user',
+  GET_ALL_MOVIE: 'get_all_movie',
+  GET_ALL_USER: 'get_all_user',
+  GET_ALL_ADMIN: 'get_all_admin',
+  GET_ALL_DB: 'get_all_db',
+  GET_ALL_SINGLE_MOVIE: 'get_all_single_movie',
+  GET_ALL_SERIES_MOVIE: 'get_all_series_movie',
+  GET_ALL_SINGLE_MOVIE_TRENDING: 'get_all_single_movie_trending',
+  GET_LIST_EPISODE: 'get_list_episode',
   GET_CONTENT_BY_ID: 'get_content_by_id',
   GET_CASE_STATUS_USER: 'get_case_status_user',
+  GET_REVENUE_BY_MEMBER: 'get_revenue_by_member',
+  GET_ALL_USER_DB: 'get_all_user_db',
+  UPDATE_STATUS_MEMBER: 'UPDATE_STATUS_MEMBER',
 }
 
 const endpoint = {
-  login: 'api/v1/login/auth',
-  get_customer: '/api/v1/customer/get-all',
-  create_customer: '/api/v1/customer/create',
-  update_customer: '/api/v1/customer/update',
-  delete_customer: '/api/v1/customer/delete',
-  create_by_excel: '/api/v1/customer/create-by-excel',
-  assign_customer_by_user: '/api/v1/customer/upadte-customer-by-user',
-  update_frequency_by_email: '/api/v1/customer/update-frequency-by-email',
-  pregnancy_status_sending: '/api/v1/customer/update-status-sending',
-  customer_get_by_id: '/api/v1/customer/get-by-id',
-  view_history_by_customer: '/api/v1/customer/view-detail-history',
-  update_status_response: '/api/v1/send-mail/update',
-  check_name_exist_customer: '/api/v1/customer/check-import-name-customer',
-  search_customer_by_elastic_search: '/api/v1/customer/search-elasticsearch',
-  search_content: '/api/v1/template/find-all',
-  create_content: '/api/v1/template/create',
-  update_content: '/api/v1/template/update',
-  find_content_by_id: '/api/v1/template/find-by-id',
-  delete_content: '/api/v1/template/delete-by-id',
-  change_status_content: '/api/v1/template/change-status',
-  get_user: '/api/v1/user/get',
-  get_user_pagination: '/api/v1/user/get',
-  create_user: '',
+  login: '/api/v1/login/auth',
+  update_account_user: '/api/v1/user/update-account',
+  get_transaction_histories_user: '/api/v1/user/get-transaction-histories',
+  get_user_by_email: '/api/v1/user/get-user-by-email',
+  get_list_episode: '//api/v1/movie/list-episode',
+  update_rate_movie: '/api/v1/movie/update-rate',
+  update_view_movie: '/api/v1/movie/update-view',
+  update_movie: '/api/v1/movie/update-movie',
+  create_movie: '/api/v1/movie/create',
+  delete_movie: '/api/v1/movie/delete',
+  create_user: '/api/v1/user/create',
   update_user: '/api/v1/user/update',
   delete_user: '/api/v1/user/delete',
-  record_working_time: '/api/v1/user/record-working-time',
-  view_all_effort_of_member: '/api/v1/user/view_all_effort_of_member',
-  send_mail: '/api/v1/send-mail//customers',
-  update_response: '/api/v1/send-mail/update-response',
-  get_email_response: '/api/v1/email/find-by-id',
-  get_email_history: '/api/v1/send-mail/get-all',
-  get_email_by_id: '/api/v1/send-mail/find-by-id',
-  create_customer_resource: '/api/v1/customer-resource/create',
-  update_customer_resource: '/api/v1/customer-resource/update',
-  delete_customer_resource: '/api/v1/customer-resource/delete-by-id',
-  get_all_customer_resource: '/api/v1/customer-resource/find-all',
-  get_all_customer_of_resource:
-    '/api/v1/customer-resource/get-customer-of-resource',
-  get_all_history_send_mail: '/api/v1/customer-resource/get-history-send-mail',
-  get_all_inquiry: '/api/v1/inquiry/get-all',
-  get_inquiry_by_id: '/api/v1/inquiry/find-by-id',
-  get_all_customer_sent:
-    '/api/v1/customer-resource/get-customer-of-resource-sent',
-  get_contact_infor: '/api/v1/contact-infor/get',
-  update_contact_infor: '/api/v1/contact-infor/update',
-  find_by_id_contact_infor: '/api/v1/contact-infor/find-by-id',
-  view_histories_import_customer:
-    '/api/v1/customer-resource/get-history-import-customer',
-  view_detail_histories_import_customer:
-    '/api/v1/customer-resource/get-detail-history-import-customer',
-  get_by_date_case: '/api/v1/dash-board/get-by-date-case',
-  get_by_date_response: '/api/v1/dash-board/get-by-date-response',
-  get_all_customer_resource_responsed:
-    '/api/v1/dash-board/view-all-customer-responsed',
-  case_status: '/api/v1/dash-board/get-total',
-  case_resource: '/api/v1/dash-board/liststatus',
-  case_resource_user: '/api/v1/dash-board/liststatususer',
-  case_performance: '/api/v1/dash-board/listuser',
-  case_list_user: '/api/v1/dash-board/listuserid',
-  case_list_user_id: '/api/v1/dash-board/listuserflow',
-  get_quantity_document_by_type: '/api/v1/salekit/get-quantity',
-  get_all_document: '/api/v1/salekit/get',
-  list_document_resource: '/api/v1/salekit/get-document-resource',
-  upload_file_url: '/api/v1/upload-file-share-point',
-  create_url_file: '/api/v1/salekit/create',
-  get_document_by_id: '/api/v1/salekit/get-by-id',
-  document_file_categories: '/api/v1/salekit/get-categoties',
-  update_document_by_id: '/api/v1/salekit/update',
-  delete_document: '/api/v1/salekit/delete',
-  get_history_document: '/api/v1/salekit/get-history',
-  download_document: '/api/v1/sharepoint/download-file',
+  get_all_db: '/api/v1/dash-board/get-all',
+  get_all_user_db: '/api/v1/user/get-reveneu',
+  get_list_movie_by_list_movie_id:
+    '/api/v1/movie/get-list-movie-by-list-movie-id',
+  get_all_movie: '/api/v1/movie/get-all',
+  get_all_single_movie: '/api/v1/movie/single-movie',
+  get_all_series_movie: '/api/v1/movie/series-movie',
+  get_all_single_movie_trending: '/api/v1/movie/single-movie-trending',
+  get_infor_movie_by_id: '/api/v1/movie/get-infor',
+  add_new_account: '/api/v1/user/create-new-account',
+  update_status_member: '/api/v1/user/update-status-member',
+
+  verify_email_registered: '/api/v1/register',
+  // get_revenue_by_member: '/api/v1/dash-board/get-revenue',
+  get_user: '/api/v1/user/get',
+  get_profile_user: '/api/v1/user/get-profile',
+  get_user_pagination: '/api/v1/user/get',
+  create_transaction_histories: '/api/v1/transaction-histories/create',
+  get_report_pdf: '/api/v1/report/pdf',
+  render_ejs_revenue: '/api/v1/render-ejs-revenue',
+  render_ejs_movie: '/api/v1/render-ejs-movie',
+
+  update_profile_user: '/api/v1/user/update-profile',
+  update_list_movie_user: '/api/v1/user/update-list-movie',
 }
 
 const getFolderCustomer = [
@@ -219,6 +225,52 @@ const STATUS_FEEDBACK = [
   { value: '1', label: 'Đã phản hồi' },
 ]
 
+const OPTIONS_SERVICE = [
+  { value: '0', label: 'Di động' },
+  { value: '1', label: 'Cơ bản' },
+  { value: '2', label: 'Tiêu chuẩn' },
+  { value: '3', label: 'Cao cấp' },
+]
+
+const SERVICE = [
+  {
+    index: 0,
+    value: {
+      name: 'Di động',
+      cost: 70000,
+      quality: 'Tốt',
+      resolution: '480p',
+    },
+  },
+  {
+    index: 1,
+    value: {
+      name: 'Cơ bản',
+      cost: 108000,
+      quality: 'Tốt',
+      resolution: '720p',
+    },
+  },
+  {
+    index: 2,
+    value: {
+      name: 'Tiêu chuẩn',
+      cost: 220000,
+      quality: 'Tốt hơn',
+      resolution: '1080p',
+    },
+  },
+  {
+    index: 3,
+    value: {
+      name: 'Cao cấp',
+      cost: 260000,
+      quality: 'Tốt nhất',
+      resolution: '4K+HDR',
+    },
+  },
+]
+
 const MESSAGE = {
   SUCESS: {
     DOCUMENT: {
@@ -329,7 +381,58 @@ const MESSAGE = {
 
 const DATE_DMY = 'DD/MM/YYYY'
 
+const CATEGORY = [
+  { name: 'HANH_DONG', value: 'Hành động' },
+  { name: 'HINH_SU', value: 'Hình sự' },
+  { name: 'VIEN_TUONG', value: 'Viễn tưởng' },
+  { name: 'PHIEU_LUU', value: 'Phiêu lưu' },
+  { name: 'BI_AN', value: 'Bí ẩn' },
+  { name: 'HAI_HUOC', value: 'Hài hước' },
+]
+
+const TYPE = [
+  'Hành Động',
+  'Cổ Trang',
+  'Chiến Tranh',
+  'Viễn Tưởng',
+  'Kinh Dị',
+  'Tài Liệu',
+  'Bí Ẩn',
+  'Tình Cảm',
+  'Tâm Lý',
+  'Thể Thao',
+  'Phiêu Lưu',
+  'Âm Nhạc',
+  'Hài Hước',
+  'Hình Sự',
+  'Võ Thuật',
+  'Khoa Học',
+  'Thần Thoại',
+  'Chính Kịch',
+]
+
+const OPTIONS_BANKNAME = [
+  { label: 'Vietcombank', value: 'Vietcombank' },
+  { label: 'Techcombank', value: 'Techcombank' },
+  { label: 'TPBank', value: 'TPBank' },
+  { label: 'VietinBank', value: 'VietinBank' },
+  { label: 'VIB', value: 'VIB' },
+  { label: 'HDBank', value: 'HDBank' },
+  { label: 'Agribank', value: 'Agribank' },
+  { label: 'BIDV', value: 'BIDV' },
+  { label: 'MBBank', value: 'MBBank' },
+  { label: 'Sacombank', value: 'Sacombank' },
+  { label: 'SHB', value: 'SHB' },
+  { label: 'VPBank', value: 'VPBank' },
+  { label: 'LienVietPostBank', value: 'LienVietPostBank' },
+  { label: 'GPBank', value: 'GPBank' },
+]
+
 export {
+  OPTIONS_BANKNAME,
+  OPTIONS_SERVICE,
+  CATEGORY,
+  TYPE,
   URL,
   QUERY_KEY,
   endpoint,
@@ -352,4 +455,5 @@ export {
   typeOfSend,
   STATUS_FEEDBACK,
   statusSending,
+  SERVICE,
 }

@@ -20,10 +20,16 @@ export default {
           inactive: '#D9001B',
           active: '#4B7902',
           third: 'rgba(217, 0, 27, 1)',
+          light: '#e03b2f',
+          main: '#e50914',
+          delete: '#e8001b',
+          deleteHover: '#f8112c',
         },
         gray: {
+          account: '#737373',
           primary: 'rgb(170 170 170)',
           secondary: 'rgba(0, 0, 0, 0.88)',
+          disable: '#ebebeb',
         },
 
         blue: {
@@ -33,10 +39,13 @@ export default {
           fouth: 'rgba(129, 211, 248, 1)',
           fifth: '#027db4',
           sixth: 'rgba(2, 125, 180, 1)',
+          cancel: '#0958d9',
         },
         green: {
           primary: 'rgba(3, 157, 18, 1)',
           secondary: 'rgba(75, 121, 2, 1)',
+          ok: '#0bb51c',
+          okHover: '#0cc91f',
         },
         border: {
           primary: '#d7d7d7',
@@ -58,6 +67,7 @@ export default {
           primary: '#141414',
           main: '#0b0b0b',
         },
+        whiteForm: '#ffffffc9',
       },
       fontFamily: {
         home: 'Calistoga',

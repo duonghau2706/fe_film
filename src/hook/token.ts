@@ -4,11 +4,19 @@ interface ITokenDecode {
   id: string
   name: string
   email: string
-  username: string
-  gender: string
-  phoneNumber: number
+  password: string
+  gender: number
+  born: string
+  phone: string
   address: string
+  money: number
+  list_movie_id: string
+  service: number
+  renewal_date: string
+  bank_name: string
+  bank_account: string
   role: number
+  is_member: boolean
 }
 
 const verifyToken = () => {

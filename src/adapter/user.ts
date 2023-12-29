@@ -1,47 +1,71 @@
 import { endpoint } from '@/utils/constants'
 import { sendGet, sendPost } from '@/hook/axios'
 
-const getAll = async (params?: any) =>
-  await sendGet(`${endpoint.get_user_pagination}`, params).then(
+const getUser = async (params?: any) =>
+  await sendGet(`${endpoint.get_user}`, params).then((res) => res.data)
+
+const getProfile = async (params?: any) =>
+  await sendGet(`${endpoint.get_profile_user}`, params).then((res) => res.data)
+
+const getTransactionHistories = async (params?: any) =>
+  await sendGet(`${endpoint.get_transaction_histories_user}`, params).then(
     (res) => res.data
   )
 
-const create = async (params?: any) => {
-  return await sendPost(`${endpoint.create_user}`, params).then(
-    (res) => res.data
-  )
-}
+const getAllUserDb = async (params?: any) =>
+  await sendPost(`${endpoint.get_all_user_db}`, params).then((res) => res.data)
 
-const update = async (params?: any) => {
-  return await sendPost(`${endpoint.update_user}`, params).then(
+const createUser = async (params?: any) =>
+  await sendPost(`${endpoint.create_user}`, params).then((res) => res.data)
+
+const updateUser = async (params?: any) =>
+  await sendPost(`${endpoint.update_user}`, params).then((res) => res.data)
+
+const deleteUser = async (params?: any) =>
+  await sendPost(`${endpoint.delete_user}`, params).then((res) => res.data)
+
+// const update = async (params?: any) => {
+//   return await sendPost(`${endpoint.update_user}`, params).then(
+//     (res: any) => res.data
+//   )
+// }
+
+const updateAccount = async (params?: any) => {
+  return await sendPost(`${endpoint.update_account_user}`, params).then(
     (res: any) => res.data
   )
 }
 
-const deletebyId = async (params?: any) => {
-  return await sendPost(`${endpoint.delete_user}`, params).then(
+const updateProfile = async (params?: any) => {
+  return await sendPost(`${endpoint.update_profile_user}`, params).then(
     (res: any) => res.data
   )
 }
 
-const recordWorkingTime = async (params?: any) => {
-  return await sendPost(`${endpoint.record_working_time}`, params).then(
+const updateFavourite = async (params?: any) => {
+  return await sendPost(`${endpoint.update_list_movie_user}`, params).then(
     (res: any) => res.data
   )
 }
 
-const viewAllEffortOfMember = async (params?: any) =>
-  await sendGet(`${endpoint.view_all_effort_of_member}`, params).then(
-    (res) => res.data
+const updateStatusMember = async (params?: any) => {
+  return await sendPost(`${endpoint.update_status_member}`, params).then(
+    (res: any) => res.data
   )
+}
 
 const userApi = {
-  update,
-  create,
-  getAll,
-  deletebyId,
-  recordWorkingTime,
-  viewAllEffortOfMember,
+  updateStatusMember,
+  createUser,
+  updateUser,
+  deleteUser,
+  updateAccount,
+  updateProfile,
+  updateFavourite,
+  getProfile,
+  getUser,
+  getTransactionHistories,
+  getAllUserDb,
 }
 
 export default userApi
